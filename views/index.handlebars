@@ -5,8 +5,9 @@
 
     {{#each burgers}} {{#unless this.devoured}}
     <div>
-        <form id={{this.id}} >{{this.burger}}
-            <button class="devour" type="submit" data-id={{this.id}}> Devour! </button>
+        <form id={{this.id}} 
+        {{this.burger}}
+            <button class="devour" type="submit" > Devour! </button>
         </form>
     </div>
     {{/unless}} {{/each}}
