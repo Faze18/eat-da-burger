@@ -2,7 +2,7 @@
 
 var orm = require("../config/orm.js");
 
-var hamburger = {
+var burger = {
   selectAll: function(callback) {
     orm.selectAll("burgers", function(res) {
       callback(res);
@@ -22,4 +22,4 @@ var hamburger = {
 };
 
 // Export the database functions for the controller (catsController.js).
-module.exports = hamburger;
+module.exports = burger;

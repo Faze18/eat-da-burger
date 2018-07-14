@@ -1,7 +1,5 @@
 var express = require('express');
-
 var router = express.Router();
-
 var burger = require('../models/burger.js');
 
 
@@ -19,15 +17,15 @@ router.get("/", function(req, res) {
   
   router.post("/burgers", function(req, res) {
     burger.insertOne([
-        "newBurger"
+        "burger"
         ], [
-      req.body.burger
+      req.body.newBurger
     ], function(result) {
       res.redirect('/');
     });
   });
   
-  router.put("/burger/:id", function(req, res) {
+  router.put("/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
     console.log("condition", condition);
@@ -35,18 +33,13 @@ router.get("/", function(req, res) {
     burger.updateOne({
       devoured: true
     }, condition, function(result) {
-      if (result.changedRows == 0) {
-        // If no rows were changed, then the ID must not exist, so 404
-        console.log("Error Nathan");
-        return res.status(404).end();
-      } else {
+    
         res.redirect('/');
-        res.status(200).end();
      
-      }
+      
     });
   });
-  
+  console.log(burger);
   
   // Export routes for server.js to use.
   module.exports = router;
