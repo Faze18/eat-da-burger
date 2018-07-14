@@ -5,8 +5,8 @@
 
     {{#each burgers}} {{#unless this.devoured}}
     <div>
-        <form action="/burgers/{{this.id}}" method="PUT"  id={{this.id}} >{{this.burger}}
-            <button type="submit" method="POST"> Devour! </button>
+        <form id={{this.id}} >{{this.burger}}
+            <button class="devour" type="submit" data-id={{this.id}}> Devour! </button>
         </form>
     </div>
     {{/unless}} {{/each}}
@@ -35,3 +35,30 @@
         </form>
     </div>
 </div>
+
+<script>
+    $(function() {
+  $(".devour").on("click", function(event) {
+    var id = $(this).data("id");
+    var devoured = true;
+    var newDevour = {
+      devoured: devoured
+    };
+    console.log(id);
+    console.log(newDevour);
+        // Send the PUT request.
+    $.ajax("/burgers/devour/" + id, {
+      type: "PUT",
+      data: newDevour
+    }).then(
+      function() {
+        // Reload the page to get the updated list
+        console.log("something happened");
+        debugger;
+        location.reload();
+      }
+    );
+  });
+    });
+
+</script>

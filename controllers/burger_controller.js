@@ -25,20 +25,15 @@ router.get("/", function(req, res) {
     });
   });
   
-  router.put("/burgers/:id", function(req, res) {
+  router.put("/burgers/devour/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
-  
-    burger.updateOne({
-      devoured: true
-    }, condition, function(result) {
-    
-        res.redirect('/');
+  	burgers.updateOne({'devoured': true}, condition, function(data){
+      res.redirect('/');
+    });
      
       
-    });
   });
   
-  // Export routes for server.js to use.
   module.exports = router;
   
